@@ -31,13 +31,15 @@ async function connectToDataBase() {
     // const newRecipes = Recipe.insertMany(data);
     // console.log(newRecipes.title);
 
+    //Iteration4//
     await Recipe.findOneAndUpdate(
       { title: "Rigatoni alla Genovese" },
       { duration: 100 },
       { new: true }
     );
-
     // console.log("Success!");
+
+    await Recipe.deleteOne({ title: "Carrot Cake" });
 
     console.log("Connected to the database");
   } catch (error) {
@@ -45,3 +47,12 @@ async function connectToDataBase() {
   }
 }
 connectToDataBase();
+
+mongoose
+  .disconnect()
+  .then(() => {
+    console.log("You are disconnected");
+  })
+  .catch((err) => {
+    console.log(err);
+  });
