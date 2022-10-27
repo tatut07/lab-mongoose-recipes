@@ -12,18 +12,33 @@ mongoose;
 async function connectToDataBase() {
   try {
     await mongoose.connect(MONGODB_URI);
-    const recipe1 = {
-      title: "Mac Donalds Fries",
-      level: "Easy Peasy",
-      ingredients: ["Potatoes", "Oil", "Salt"],
-      cuisine: "Classical French",
-      dishType: "other",
-      image: "https://images.media-allrecipes.com/images/75131.jpg",
-      duration: 20,
-      creator: "Chef Ronald",
-    };
-    const newRecipe = Recipe.create(recipe1);
-    console.log(recipe1.title);
+
+    // Iteration 2//
+    // const recipe1 = {
+    //   title: "Mac Donalds Fries",
+    //   level: "Easy Peasy",
+    //   ingredients: ["Potatoes", "Oil", "Salt"],
+    //   cuisine: "Classical French",
+    //   dishType: "other",
+    //   image: "https://images.media-allrecipes.com/images/75131.jpg",
+    //   duration: 20,
+    //   creator: "Chef Ronald",
+    // };
+    // const newRecipe = Recipe.create(recipe1);
+    // console.log(recipe1.title);
+
+    //Iteration 3//
+    // const newRecipes = Recipe.insertMany(data);
+    // console.log(newRecipes.title);
+
+    await Recipe.findOneAndUpdate(
+      { title: "Rigatoni alla Genovese" },
+      { duration: 100 },
+      { new: true }
+    );
+
+    // console.log("Success!");
+
     console.log("Connected to the database");
   } catch (error) {
     console.error("Error connecting to the database", error);
